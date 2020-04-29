@@ -1,25 +1,12 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'mxw/vim-jsx'
-Plugin 'pangloss/vim-javascript'
+call plug#begin('~/.vim/plugged')
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'yegappan/mru'
+call plug#end()
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'w0rp/ale'
-Plugin 'prettier/vim-prettier'
-Plugin 'neoclide/coc.nvim'
-
-Plugin 'ap/vim-css-color'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'groenewege/vim-less'
-Plugin 'othree/csscomplete.vim'
-
-Plugin 'yegappan/mru'
-
-call vundle#end()
-filetype plugin indent on
 
 let mapleader=","
 
@@ -27,6 +14,9 @@ syntax on
 colorscheme elflord
 
 set noerrorbells
+
+"netrw stuff
+let g:netrw_liststyle=1
 
 "tab stuff
 nmap <Leader>tn :tabnew<Enter>
@@ -36,27 +26,8 @@ nmap <Leader>th :tabprev<Enter>
 "MRU remap
 nmap <Leader>f :MRU<Enter>
 
-" Prettier config
-let g:prettier#exec_cmd_async = 1
-
-" Ale linter config
-let g:ale_fixers = {
- \ 'javascript': ['eslint']
- \ }
-
-let g:ale_sign_error = 'X'
-let g:ale_sign_warning = '!'
-
-let g:ale_fix_on_save = 1
-
-"-------- NerdTree Config
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-nmap <Leader>t :NERDTreeToggle<Enter>
-nmap <silent><Leader>v :NERDTreeFind<CR>
-let NERDTreeQuitOnOpen = 1
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeDirArrows = 1
-let NERDTreeMinimalUI = 1
+nmap <Leader>y :'<,'>.w !pbcopy<Enter><Enter>
+nmap <Leader>p :r !pbpaste<Enter>
 
 "more characters will be sent to the screen for redrawing
 set ttyfast
@@ -80,6 +51,7 @@ set nowrap
 "always display the status line
 set laststatus=2
 "display line numbers on the left side
+set relativenumber
 set number
 "highlight current line
 set cursorline
@@ -89,6 +61,11 @@ set splitright
 
 "always set autoindenting on
 set autoindent
+set breakindent
+
+set tabstop=2
+set shiftwidth=2
+set expandtab
 
 "incremental search
 set incsearch
