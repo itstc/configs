@@ -5,13 +5,17 @@ call plug#begin('~/.vim/plugged')
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'yegappan/mru'
+Plug 'morhetz/gruvbox'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
+colorscheme gruvbox
+set background=dark
 
 let mapleader=","
 
 syntax on
-colorscheme elflord
 
 set noerrorbells
 
@@ -28,6 +32,9 @@ nmap <Leader>f :MRU<Enter>
 
 nmap <Leader>y :'<,'>.w !pbcopy<Enter><Enter>
 nmap <Leader>p :r !pbpaste<Enter>
+
+"fzf
+nmap <Leader>r :GFiles<Enter>
 
 "more characters will be sent to the screen for redrawing
 set ttyfast
@@ -71,6 +78,7 @@ set expandtab
 set incsearch
 "highlight search
 set hlsearch
+
 "searches are case insensitive unless they contain at least one capital letter
 set ignorecase
 set smartcase
